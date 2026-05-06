@@ -1,0 +1,17 @@
+# Visual Studio
+.vs/
+bin/
+obj/
+
+# Archivos de usuario
+*.user
+*.suo
+
+# Logs
+*.log
+
+# Base de datos local
+*.db
+
+# Otros
+*.cache
