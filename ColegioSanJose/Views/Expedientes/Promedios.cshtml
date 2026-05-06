@@ -14,8 +14,45 @@
         {
             <tr>
                 <td>@item.Alumno</td>
-                <td>@item.Promedio</td>
+                <td>@item.Promedio.ToString("0.00")</td>
             </tr>
         }
     </tbody>
 </table>
+
+<hr />
+
+<h3>Gráfica de Promedios</h3>
+
+<canvas id="graficaPromedios" width="400" height="200"></canvas>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        var nombres = [];
+        var promedios = [];
+
+        @foreach (var item in Model)
+        {
+                <text>
+                    nombres.push("@item.Alumno");
+                    promedios.push(@item.Promedio);
+                </text>
+        }
+
+        var ctx = document.getElementById('graficaPromedios').getContext('2d');
+
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: nombres,
+                datasets: [{
+                    label: 'Promedio de Notas',
+                    data: promedios,
+                    borderWidth: 1
+                }]
+            }
+        });
+    </script>
+}
